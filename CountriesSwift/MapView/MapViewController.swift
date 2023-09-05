@@ -32,6 +32,10 @@ class MapViewController: UIViewController {
         viewModel?.viewDidLoad()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        removePreview()
+    }
+    
     //MARK: - Setup methods.
     private func setup() {
         guard let country = country,
@@ -85,7 +89,12 @@ class MapViewController: UIViewController {
         previewView.translatesAutoresizingMaskIntoConstraints = false
         previewView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         previewView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        previewView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.7).isActive = true
+        if UIDevice.current.orientation.isLandscape {
+            previewView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.3).isActive = true
+        } else {
+            previewView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.7).isActive = true
+        }
+        previewView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.6).isActive = true
         previewView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
