@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD5963832AA77CDE009A7C32 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD5963822AA77CDE009A7C32 /* GoogleService-Info.plist */; };
 		FD5B2D072AA6B64800D33779 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5B2D062AA6B64800D33779 /* AppDelegate.swift */; };
 		FD5B2D092AA6B64800D33779 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5B2D082AA6B64800D33779 /* SceneDelegate.swift */; };
 		FD5B2D0B2AA6B64800D33779 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5B2D0A2AA6B64800D33779 /* ViewController.swift */; };
@@ -26,7 +27,6 @@
 		FD5B2D912AA6F23E00D33779 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5B2D902AA6F23E00D33779 /* MapViewModel.swift */; };
 		FDD36A8C2AA75CD900CF1DB7 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD36A8B2AA75CD900CF1DB7 /* PreviewView.swift */; };
 		FDD36A8E2AA75CEB00CF1DB7 /* PreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDD36A8D2AA75CEB00CF1DB7 /* PreviewView.xib */; };
-		FDD36A9E2AA775FB00CF1DB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FDD36A9D2AA775FB00CF1DB7 /* GoogleService-Info.plist */; };
 		FDD36AA12AA7765E00CF1DB7 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FDD36AA02AA7765E00CF1DB7 /* FirebaseAnalytics */; };
 		FDD36AA32AA7765E00CF1DB7 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = FDD36AA22AA7765E00CF1DB7 /* FirebaseCrashlytics */; };
 /* End PBXBuildFile section */
@@ -49,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD5963822AA77CDE009A7C32 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FD5B2D032AA6B64800D33779 /* CountriesSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountriesSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5B2D062AA6B64800D33779 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5B2D082AA6B64800D33779 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,7 +73,6 @@
 		FD5B2D902AA6F23E00D33779 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		FDD36A8B2AA75CD900CF1DB7 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		FDD36A8D2AA75CEB00CF1DB7 /* PreviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreviewView.xib; sourceTree = "<group>"; };
-		FDD36A9D2AA775FB00CF1DB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +105,7 @@
 		FD5B2CFA2AA6B64800D33779 = {
 			isa = PBXGroup;
 			children = (
-				FDD36A9D2AA775FB00CF1DB7 /* GoogleService-Info.plist */,
+				FD5963822AA77CDE009A7C32 /* GoogleService-Info.plist */,
 				FD5B2D052AA6B64800D33779 /* CountriesSwift */,
 				FD5B2D1C2AA6B64B00D33779 /* CountriesSwiftTests */,
 				FD5B2D262AA6B64B00D33779 /* CountriesSwiftUITests */,
@@ -354,7 +354,7 @@
 				FD5B2D102AA6B64A00D33779 /* Assets.xcassets in Resources */,
 				FD5B2D0E2AA6B64800D33779 /* Main.storyboard in Resources */,
 				FDD36A8E2AA75CEB00CF1DB7 /* PreviewView.xib in Resources */,
-				FDD36A9E2AA775FB00CF1DB7 /* GoogleService-Info.plist in Resources */,
+				FD5963832AA77CDE009A7C32 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
