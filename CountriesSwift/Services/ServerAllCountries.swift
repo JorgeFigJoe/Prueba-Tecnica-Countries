@@ -37,7 +37,7 @@ enum CountriesEndPointType {
                 <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
                 <soap:Body>
                 <GetEstadosbyPais xmlns="http://tempuri.org/">
-                <idEstado>\(countryId ?? "")</idEstado>
+                <idEstado>\(countryId ?? "1")</idEstado>
                 </GetEstadosbyPais>
                 </soap:Body>
                 </soap:Envelope>
@@ -48,8 +48,8 @@ enum CountriesEndPointType {
 
 class ServerCountries {
     
-    static func getAllCountriesServer(type: CountriesEndPointType, completion: @escaping (Data?, Error?) -> Void) {
-        WebRequest.shared.request(url: type.endpoint(), method: .post, contentType: .xml, body: type.params(countryId: nil)) { (data, response, error) in
+    static func getAllCountriesServer(type: CountriesEndPointType, id: String? = nil, completion: @escaping (Data?, Error?) -> Void) {
+        WebRequest.shared.request(url: type.endpoint(), method: .post, contentType: .xml, body: type.params(countryId: id)) { (data, response, error) in
             if let error = error {
                 completion(data, error)
             } else if let data = data {

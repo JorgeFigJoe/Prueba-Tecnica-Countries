@@ -14,19 +14,32 @@ class MapViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var mapView: MKMapView!
     private let locationManager = CLLocationManager()
+    var viewModel: MapViewModel?
     
     var country: [String: Any]?
+    var countryAllInformation =  [[String: Any]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViewModel()
         setupLocation()
         setup()
+        viewModel?.viewDidLoad()
     }
     
     private func setup() {
         guard let country = country,
               let countryName = country["NombrePais"] else { return }
         self.title = "\(countryName)"
+    }
+    
+    private func setupViewModel() {
+        let specificCountry = country?["idPais"] as? String
+        viewModel = MapViewModel(id: specificCountry ?? "1")
+        
+        viewModel?.bindingCountryRefresh = { country in
+            self.countryAllInformation = country
+        }
     }
 }
 
