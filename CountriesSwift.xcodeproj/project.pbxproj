@@ -26,6 +26,9 @@
 		FD5B2D912AA6F23E00D33779 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5B2D902AA6F23E00D33779 /* MapViewModel.swift */; };
 		FDD36A8C2AA75CD900CF1DB7 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD36A8B2AA75CD900CF1DB7 /* PreviewView.swift */; };
 		FDD36A8E2AA75CEB00CF1DB7 /* PreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDD36A8D2AA75CEB00CF1DB7 /* PreviewView.xib */; };
+		FDD36A9E2AA775FB00CF1DB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FDD36A9D2AA775FB00CF1DB7 /* GoogleService-Info.plist */; };
+		FDD36AA12AA7765E00CF1DB7 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FDD36AA02AA7765E00CF1DB7 /* FirebaseAnalytics */; };
+		FDD36AA32AA7765E00CF1DB7 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = FDD36AA22AA7765E00CF1DB7 /* FirebaseCrashlytics */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,7 @@
 		FD5B2D902AA6F23E00D33779 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		FDD36A8B2AA75CD900CF1DB7 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		FDD36A8D2AA75CEB00CF1DB7 /* PreviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreviewView.xib; sourceTree = "<group>"; };
+		FDD36A9D2AA775FB00CF1DB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDD36AA12AA7765E00CF1DB7 /* FirebaseAnalytics in Frameworks */,
+				FDD36AA32AA7765E00CF1DB7 /* FirebaseCrashlytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +105,7 @@
 		FD5B2CFA2AA6B64800D33779 = {
 			isa = PBXGroup;
 			children = (
+				FDD36A9D2AA775FB00CF1DB7 /* GoogleService-Info.plist */,
 				FD5B2D052AA6B64800D33779 /* CountriesSwift */,
 				FD5B2D1C2AA6B64B00D33779 /* CountriesSwiftTests */,
 				FD5B2D262AA6B64B00D33779 /* CountriesSwiftUITests */,
@@ -239,12 +246,17 @@
 				FD5B2CFF2AA6B64800D33779 /* Sources */,
 				FD5B2D002AA6B64800D33779 /* Frameworks */,
 				FD5B2D012AA6B64800D33779 /* Resources */,
+				FDD36AA42AA7778300CF1DB7 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = CountriesSwift;
+			packageProductDependencies = (
+				FDD36AA02AA7765E00CF1DB7 /* FirebaseAnalytics */,
+				FDD36AA22AA7765E00CF1DB7 /* FirebaseCrashlytics */,
+			);
 			productName = CountriesSwift;
 			productReference = FD5B2D032AA6B64800D33779 /* CountriesSwift.app */;
 			productType = "com.apple.product-type.application";
@@ -317,6 +329,9 @@
 				Base,
 			);
 			mainGroup = FD5B2CFA2AA6B64800D33779;
+			packageReferences = (
+				FDD36A9F2AA7765E00CF1DB7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = FD5B2D042AA6B64800D33779 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -339,6 +354,7 @@
 				FD5B2D102AA6B64A00D33779 /* Assets.xcassets in Resources */,
 				FD5B2D0E2AA6B64800D33779 /* Main.storyboard in Resources */,
 				FDD36A8E2AA75CEB00CF1DB7 /* PreviewView.xib in Resources */,
+				FDD36A9E2AA775FB00CF1DB7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +373,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FDD36AA42AA7778300CF1DB7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FD5B2CFF2AA6B64800D33779 /* Sources */ = {
@@ -549,6 +587,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CountriesSwift/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -708,6 +747,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FDD36A9F2AA7765E00CF1DB7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FDD36AA02AA7765E00CF1DB7 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FDD36A9F2AA7765E00CF1DB7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		FDD36AA22AA7765E00CF1DB7 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FDD36A9F2AA7765E00CF1DB7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FD5B2CFB2AA6B64800D33779 /* Project object */;
 }

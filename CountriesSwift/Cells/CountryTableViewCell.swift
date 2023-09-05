@@ -35,6 +35,8 @@ class CountryTableViewCell: UITableViewCell {
     }
     
     @IBAction func didSelectCountry(_ sender: Any) {
+//        let numbers = [0]
+//        let _ = numbers[1]
         self.delegate?.selectedCountry(id: openMapButton.tag)
     }
 }
