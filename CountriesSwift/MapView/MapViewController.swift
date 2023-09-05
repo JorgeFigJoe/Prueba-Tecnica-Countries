@@ -15,11 +15,18 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     private let locationManager = CLLocationManager()
     
-    var country = ""
+    var country: [String: Any]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLocation()
+        setup()
+    }
+    
+    private func setup() {
+        guard let country = country,
+              let countryName = country["NombrePais"] else { return }
+        self.title = "\(countryName)"
     }
 }
 
