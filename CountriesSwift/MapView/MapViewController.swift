@@ -16,17 +16,22 @@ class MapViewController: UIViewController {
     private let locationManager = CLLocationManager()
     var viewModel: MapViewModel?
     
-    var country: [String: Any]?
+    var country: [String: Any]? {
+        didSet {
+            setup()
+        }
+    }
+    
     var countryAllInformation =  [[String: Any]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewModel()
         setupLocation()
-        setup()
         viewModel?.viewDidLoad()
     }
     
+    //MARK: - Setup methods.
     private func setup() {
         guard let country = country,
               let countryName = country["NombrePais"] else { return }
@@ -64,7 +69,7 @@ class MapViewController: UIViewController {
     }
 }
 
-//MARK: - Control de la ubicación de usuario.
+//MARK: - Location user manager.
 extension MapViewController: CLLocationManagerDelegate {
     private func setupLocation() {
         self.locationManager.delegate = self
@@ -90,6 +95,7 @@ extension MapViewController: CLLocationManagerDelegate {
     }
 }
 
+//MARK: - Control select annonations.
 extension MapViewController:  MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
         guard let countryAnnonation = annotation.title,

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - Control countries enpoints.
 enum CountriesEndPointType {
     case allCountries
     case byCountry
@@ -48,10 +49,11 @@ enum CountriesEndPointType {
 
 class ServerCountries {
     
-    static func getAllCountriesServer(type: CountriesEndPointType, id: String? = nil, completion: @escaping (Data?, Error?) -> Void) {
+    //MARK: - Server communicate.
+    static func getACountrieServer(type: CountriesEndPointType, id: String? = nil, completion: @escaping (Data?, Error?) -> Void) {
         WebRequest.shared.request(url: type.endpoint(), method: .post, contentType: .xml, body: type.params(countryId: id)) { (data, response, error) in
             if let error = error {
-                completion(data, error)
+                completion(nil, error)
             } else if let data = data {
                 completion(data, nil)
             }

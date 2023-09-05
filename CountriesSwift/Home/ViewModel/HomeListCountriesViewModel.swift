@@ -14,8 +14,8 @@ class HomeListCountriesViewModel: NSObject {
     var bindingCountriesRefresh: (([[String: Any]]) -> Void)?
     var bindingOpenViewController: ((UIViewController) -> Void)?
     
-    private var xmlDict = [String: Any]()
-    private var xmlDictArr = [[String: Any]]()
+    private var xmlAuxiliar = [String: Any]()
+    private var xmlDataArray = [[String: Any]]()
     private var currentElement = ""
     
     func viewDidLoad() {
@@ -23,7 +23,7 @@ class HomeListCountriesViewModel: NSObject {
     }
     
     private func getAllCountries() {
-        ServerCountries.getAllCountriesServer(type: .allCountries) { data, error in
+        ServerCountries.getACountrieServer(type: .allCountries) { data, error in
             guard error == nil,
                   let data = data else { return }
             let davResponse = XMLParser(data: data)
@@ -33,7 +33,7 @@ class HomeListCountriesViewModel: NSObject {
     }
     
     func showMapView(countrySelected: [String: Any]) {
-        guard let vc = UIStoryboard.init(name: "MapViewController", bundle: Bundle.main).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else {return}
+        guard let vc = UIStoryboard.init(name: "MapViewController", bundle: Bundle.main).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
         vc.country = countrySelected
         bindingOpenViewController?(vc)
     }
@@ -44,7 +44,7 @@ class HomeListCountriesViewModel: NSObject {
 extension HomeListCountriesViewModel: XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         if elementName == "Pais" {
-            xmlDict = [:]
+            xmlAuxiliar = [:]
         } else {
             currentElement = elementName
         }
@@ -52,19 +52,19 @@ extension HomeListCountriesViewModel: XMLParserDelegate {
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         if !string.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            if xmlDict[currentElement] == nil {
-                   xmlDict.updateValue(string, forKey: currentElement)
+            if xmlAuxiliar[currentElement] == nil {
+                xmlAuxiliar.updateValue(string, forKey: currentElement)
             }
         }
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "Pais" {
-                xmlDictArr.append(xmlDict)
+            xmlDataArray.append(xmlAuxiliar)
         }
     }
     
     func parserDidEndDocument(_ parser: XMLParser) {
-         bindingCountriesRefresh?(xmlDictArr)
+         bindingCountriesRefresh?(xmlDataArray)
     }
 }

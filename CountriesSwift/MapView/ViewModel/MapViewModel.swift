@@ -13,8 +13,8 @@ class MapViewModel: NSObject {
     var bindingCountryRefresh: (([[String: Any]]) -> Void)?
     var idCountry: String
     
-    private var xmlDict = [String: Any]()
-    private var xmlDictArr = [[String: Any]]()
+    private var xmlAuxiliar = [String: Any]()
+    private var xmlDataArray = [[String: Any]]()
     private var currentElement = ""
     
     init(id: String) {
@@ -26,7 +26,7 @@ class MapViewModel: NSObject {
     }
     
     private func getCountry() {
-        ServerCountries.getAllCountriesServer(type: .byCountry, id: self.idCountry) { data, error in
+        ServerCountries.getACountrieServer(type: .byCountry, id: self.idCountry) { data, error in
             guard error == nil,
                   let data = data else { return }
             let davResponse = XMLParser(data: data)
@@ -41,7 +41,7 @@ class MapViewModel: NSObject {
 extension MapViewModel: XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         if elementName == "Estado" {
-            xmlDict = [:]
+            xmlAuxiliar = [:]
         } else {
             currentElement = elementName
         }
@@ -49,19 +49,19 @@ extension MapViewModel: XMLParserDelegate {
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         if !string.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            if xmlDict[currentElement] == nil {
-                   xmlDict.updateValue(string, forKey: currentElement)
+            if xmlAuxiliar[currentElement] == nil {
+                xmlAuxiliar.updateValue(string, forKey: currentElement)
             }
         }
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "Estado" {
-                xmlDictArr.append(xmlDict)
+            xmlDataArray.append(xmlAuxiliar)
         }
     }
     
     func parserDidEndDocument(_ parser: XMLParser) {
-        bindingCountryRefresh?(xmlDictArr)
+        bindingCountryRefresh?(xmlDataArray)
     }
 }

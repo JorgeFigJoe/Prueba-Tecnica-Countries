@@ -15,6 +15,7 @@ class CountryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var countryNameLabel: UILabel!
     @IBOutlet weak var openMapButton: UIButton!
+    
     var delegate: CountryTableViewCellDelegate?
     private var country: [String: Any]?
     
@@ -36,6 +37,4 @@ class CountryTableViewCell: UITableViewCell {
         guard let country = country else { return }
         self.delegate?.selectedCountry(country: country)
     }
-    
-    
 }
