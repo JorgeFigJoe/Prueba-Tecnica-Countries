@@ -39,6 +39,23 @@ class MapViewController: UIViewController {
         
         viewModel?.bindingCountryRefresh = { country in
             self.countryAllInformation = country
+            self.updateAnnonationsMap()
+        }
+    }
+    
+    private func updateAnnonationsMap() {
+        DispatchQueue.main.async {
+            for city in self.countryAllInformation {
+                let annotation = MKPointAnnotation()
+                guard let coordinate = city["Coordenadas"] as? String else { return }
+                let result = coordinate.components(separatedBy: ", ")
+                guard let latitudeString = result.first,
+                      let longitudeString = result.last,
+                      let longitude = Double(longitudeString),
+                      let latitude = Double(latitudeString) else {return}
+                annotation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                self.mapView.addAnnotation(annotation)
+            }
         }
     }
 }
