@@ -32,9 +32,9 @@ class HomeListCountriesViewModel: NSObject {
         }
     }
     
-    func showMapView(countrySelected: [String: Any]) {
+    func showMapView(countrySelected: Int) {
         guard let vc = UIStoryboard.init(name: "MapViewController", bundle: Bundle.main).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
-        vc.country = countrySelected
+        vc.country = xmlDataArray[countrySelected - 1]
         bindingOpenViewController?(vc)
     }
 }

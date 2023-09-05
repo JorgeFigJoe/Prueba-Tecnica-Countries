@@ -22,6 +22,8 @@ class MapViewController: UIViewController {
         }
     }
     
+    private var id: Int? 
+    
     var countryAllInformation =  [[String: Any]]()
     
     override func viewDidLoad() {
@@ -34,14 +36,16 @@ class MapViewController: UIViewController {
     //MARK: - Setup methods.
     private func setup() {
         guard let country = country,
+              let idString = country["idPais"] as? String,
+              let id = Int(idString),
               let countryName = country["NombrePais"] else { return }
         self.title = "\(countryName)"
+        self.id = id
     }
     
     private func setupViewModel() {
-        let specificCountry = country?["idPais"] as? String
-        viewModel = MapViewModel(id: specificCountry ?? "1")
-        
+        guard let id = self.id else { return }
+        viewModel = MapViewModel(id: id)
         viewModel?.bindingCountryRefresh = { country in
             self.countryAllInformation = country
             self.updateAnnonationsMap()

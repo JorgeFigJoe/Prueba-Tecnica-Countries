@@ -72,8 +72,8 @@ extension ViewController: UITableViewDataSource {
 }
 
 extension ViewController: CountryTableViewCellDelegate {
-    func selectedCountry(country: [String: Any]) {
-        viewModel?.showMapView(countrySelected: country)
+    func selectedCountry(id: Int) {
+        viewModel?.showMapView(countrySelected: id)
     }
 }
 

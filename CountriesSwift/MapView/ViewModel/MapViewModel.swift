@@ -11,13 +11,13 @@ class MapViewModel: NSObject {
     
     //MARK: Outputs.
     var bindingCountryRefresh: (([[String: Any]]) -> Void)?
-    var idCountry: String
+    var idCountry: Int
     
     private var xmlAuxiliar = [String: Any]()
     private var xmlDataArray = [[String: Any]]()
     private var currentElement = ""
     
-    init(id: String) {
+    init(id: Int) {
         self.idCountry = id
     }
     

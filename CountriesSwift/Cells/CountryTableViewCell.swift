@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CountryTableViewCellDelegate: AnyObject {
-    func selectedCountry(country: [String: Any])
+    func selectedCountry(id: Int)
 }
 
 class CountryTableViewCell: UITableViewCell {
@@ -17,7 +17,6 @@ class CountryTableViewCell: UITableViewCell {
     @IBOutlet weak var openMapButton: UIButton!
     
     var delegate: CountryTableViewCellDelegate?
-    private var country: [String: Any]?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,13 +27,14 @@ class CountryTableViewCell: UITableViewCell {
     }
     
     func setupCell(country: [String: Any]) {
-        guard let countryName = country["NombrePais"] as? String else { return }
-        self.country = country
+        guard let countryName = country["NombrePais"] as? String,
+              let id = country["idPais"] as? String,
+              let idTag = Int(id) else { return }
+        openMapButton.tag = idTag
         countryNameLabel.text = countryName
     }
     
     @IBAction func didSelectCountry(_ sender: Any) {
-        guard let country = country else { return }
-        self.delegate?.selectedCountry(country: country)
+        self.delegate?.selectedCountry(id: openMapButton.tag)
     }
 }
