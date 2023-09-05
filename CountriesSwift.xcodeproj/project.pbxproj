@@ -24,6 +24,8 @@
 		FD5B2D7D2AA6EA7E00D33779 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5B2D7C2AA6EA7E00D33779 /* MapViewController.swift */; };
 		FD5B2D7F2AA6EB0900D33779 /* MapViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5B2D7E2AA6EB0900D33779 /* MapViewController.storyboard */; };
 		FD5B2D912AA6F23E00D33779 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5B2D902AA6F23E00D33779 /* MapViewModel.swift */; };
+		FDD36A8C2AA75CD900CF1DB7 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD36A8B2AA75CD900CF1DB7 /* PreviewView.swift */; };
+		FDD36A8E2AA75CEB00CF1DB7 /* PreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDD36A8D2AA75CEB00CF1DB7 /* PreviewView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		FD5B2D7C2AA6EA7E00D33779 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		FD5B2D7E2AA6EB0900D33779 /* MapViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MapViewController.storyboard; sourceTree = "<group>"; };
 		FD5B2D902AA6F23E00D33779 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		FDD36A8B2AA75CD900CF1DB7 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		FDD36A8D2AA75CEB00CF1DB7 /* PreviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreviewView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 		FD5B2D052AA6B64800D33779 /* CountriesSwift */ = {
 			isa = PBXGroup;
 			children = (
+				FDD36A8A2AA75CBB00CF1DB7 /* Preview */,
 				FD5B2D7B2AA6EA4E00D33779 /* MapView */,
 				FD5B2D502AA6C4F900D33779 /* Services */,
 				FD5B2D3C2AA6BD3F00D33779 /* Cells */,
@@ -213,6 +218,15 @@
 				FD5B2D902AA6F23E00D33779 /* MapViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FDD36A8A2AA75CBB00CF1DB7 /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				FDD36A8B2AA75CD900CF1DB7 /* PreviewView.swift */,
+				FDD36A8D2AA75CEB00CF1DB7 /* PreviewView.xib */,
+			);
+			path = Preview;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +338,7 @@
 				FD5B2D132AA6B64A00D33779 /* LaunchScreen.storyboard in Resources */,
 				FD5B2D102AA6B64A00D33779 /* Assets.xcassets in Resources */,
 				FD5B2D0E2AA6B64800D33779 /* Main.storyboard in Resources */,
+				FDD36A8E2AA75CEB00CF1DB7 /* PreviewView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +368,7 @@
 				FD5B2D592AA6C99700D33779 /* WebRequest.swift in Sources */,
 				FD5B2D0B2AA6B64800D33779 /* ViewController.swift in Sources */,
 				FD5B2D072AA6B64800D33779 /* AppDelegate.swift in Sources */,
+				FDD36A8C2AA75CD900CF1DB7 /* PreviewView.swift in Sources */,
 				FD5B2D092AA6B64800D33779 /* SceneDelegate.swift in Sources */,
 				FD5B2D3F2AA6BD7800D33779 /* CountryTableViewCell.swift in Sources */,
 				FD5B2D7D2AA6EA7E00D33779 /* MapViewController.swift in Sources */,

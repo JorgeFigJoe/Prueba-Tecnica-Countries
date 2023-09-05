@@ -14,18 +14,17 @@ class MapViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var mapView: MKMapView!
     private let locationManager = CLLocationManager()
-    var viewModel: MapViewModel?
+    private var viewModel: MapViewModel?
+    private var preview: PreviewView?
+    private var id: Int?
+    var countryAllInformation =  [[String: Any]]()
     
     var country: [String: Any]? {
         didSet {
             setup()
         }
     }
-    
-    private var id: Int? 
-    
-    var countryAllInformation =  [[String: Any]]()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewModel()
@@ -71,6 +70,29 @@ class MapViewController: UIViewController {
             }
         }
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        removePreview()
+    }
+    
+    private func showPreview(country: String, city: String, coordinates: CLLocationCoordinate2D) {
+        preview?.removeFromSuperview()
+        preview = PreviewView(frame: .zero)
+        guard let previewView = preview else { return }
+        view.addSubview(previewView)
+        previewView.setupView(country: country, city: city, coordinates: coordinates)
+        previewView.translatesAutoresizingMaskIntoConstraints = false
+        previewView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        previewView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        previewView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.7).isActive = true
+        previewView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    private func removePreview() {
+        preview?.removeFromSuperview()
+        preview = nil
+    }
 }
 
 //MARK: - Location user manager.
@@ -104,8 +126,6 @@ extension MapViewController:  MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
         guard let countryAnnonation = annotation.title,
               let cityAnnonation = annotation.subtitle else { return }
-        debugPrint(countryAnnonation ?? "")
-        debugPrint(cityAnnonation ?? "")
-        debugPrint(annotation.coordinate)
+        showPreview(country: countryAnnonation ?? "", city: cityAnnonation ?? "", coordinates: annotation.coordinate)
     }
 }
