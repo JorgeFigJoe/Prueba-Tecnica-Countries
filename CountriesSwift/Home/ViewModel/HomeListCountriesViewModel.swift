@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import UIKit
 
 class HomeListCountriesViewModel: NSObject {
     
     //MARK: Outputs.
     var bindingCountriesRefresh: (([[String: Any]]) -> Void)?
+    var bindingOpenViewController: ((UIViewController) -> Void)?
     
     private var xmlDict = [String: Any]()
     private var xmlDictArr = [[String: Any]]()
@@ -28,6 +30,12 @@ class HomeListCountriesViewModel: NSObject {
             davResponse.delegate = self
             davResponse.parse()
         }
+    }
+    
+    func showMapView(countrySelected: [String: Any]) {
+        guard let vc = UIStoryboard.init(name: "MapViewController", bundle: Bundle.main).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else {return}
+        vc.country = countrySelected
+        bindingOpenViewController?(vc)
     }
 }
 

@@ -34,6 +34,12 @@ class ViewController: UIViewController {
             self.countries = countries
             self.reloadTableView()
         }
+        
+        viewModel?.bindingOpenViewController = { vc in
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
     
     private func setupTableView() {
@@ -62,6 +68,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         }
         cell.setupCell(country: countries[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel?.showMapView(countrySelected: countries[indexPath.row])
     }
 }
 
