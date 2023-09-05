@@ -43,7 +43,6 @@ class ViewController: UIViewController {
     }
     
     private func setupTableView() {
-        tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "CountryTableViewCell", bundle: nil), forCellReuseIdentifier: "CountryTableViewCell")
         
@@ -57,7 +56,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: - TableView methods
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return countries.count
     }
@@ -67,11 +66,14 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         cell.setupCell(country: countries[indexPath.row])
+        cell.delegate = self
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel?.showMapView(countrySelected: countries[indexPath.row])
+}
+
+extension ViewController: CountryTableViewCellDelegate {
+    func selectedCountry(country: String) {
+        viewModel?.showMapView(countrySelected: country)
     }
 }
 

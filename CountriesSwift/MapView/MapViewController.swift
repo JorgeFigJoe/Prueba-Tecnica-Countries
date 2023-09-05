@@ -15,7 +15,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     private let locationManager = CLLocationManager()
     
-    var country = [String: Any]()
+    var country = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +23,7 @@ class MapViewController: UIViewController {
     }
 }
 
+//MARK: - Control de la ubicación de usuario.
 extension MapViewController: CLLocationManagerDelegate {
     private func setupLocation() {
         self.locationManager.delegate = self
