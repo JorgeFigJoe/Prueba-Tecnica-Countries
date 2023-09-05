@@ -52,8 +52,12 @@ class MapViewController: UIViewController {
                 guard let latitudeString = result.first,
                       let longitudeString = result.last,
                       let longitude = Double(longitudeString),
-                      let latitude = Double(latitudeString) else {return}
+                      let country = self.country?["NombrePais"] as? String,
+                      let state = city["EstadoNombre"] as? String,
+                      let latitude = Double(latitudeString) else { return }
                 annotation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                annotation.title = country
+                annotation.subtitle = state
                 self.mapView.addAnnotation(annotation)
             }
         }
@@ -68,6 +72,7 @@ extension MapViewController: CLLocationManagerDelegate {
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
         self.mapView.showsUserLocation = true
+        self.mapView.delegate = self
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -82,5 +87,15 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Errors " + error.localizedDescription)
+    }
+}
+
+extension MapViewController:  MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
+        guard let countryAnnonation = annotation.title,
+              let cityAnnonation = annotation.subtitle else { return }
+        debugPrint(countryAnnonation ?? "")
+        debugPrint(cityAnnonation ?? "")
+        debugPrint(annotation.coordinate)
     }
 }
